@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
@@ -15,21 +15,10 @@ import useKonamiCode from './hooks/useKonamiCode';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(true);
   useKonamiCode();
 
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
-
   return (
-    <div className={`min-h-screen bg-background text-white selection:bg-primary/30 selection:text-primary`}>
+    <div className="min-h-screen bg-background text-white selection:bg-primary/30 selection:text-primary">
       <AnimatePresence>
         {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
@@ -37,7 +26,7 @@ function App() {
       {!isLoading && (
         <>
           <CustomCursor />
-          
+
           {/* Animated Background Mesh */}
           <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 blur-[120px] rounded-full animate-gradient-mesh" />
@@ -45,8 +34,8 @@ function App() {
             <div className="absolute top-[30%] right-[10%] w-[30%] h-[30%] bg-primary/10 blur-[100px] rounded-full animate-gradient-mesh" style={{ animationDelay: '-10s' }} />
           </div>
 
-          <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-          
+          <Navbar />
+
           <main className="container mx-auto px-4 md:px-8 space-y-24 pb-20">
             <Hero />
             <Skills />
@@ -56,7 +45,7 @@ function App() {
             <Achievements />
             <Contact />
           </main>
-          
+
           <Footer />
         </>
       )}

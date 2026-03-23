@@ -64,7 +64,7 @@ const Education = () => {
     {
       title: 'Intermediate (MPC + CS)',
       institution: 'Deeksha Junior College, Vizag, Andhra Pradesh',
-      year: '2021',
+      year: '2023',
       result: '80.1%',
       coursework: ['Physics', 'Chemistry', 'Mathematics', 'Computer Science'],
       icon: BookOpen,
@@ -72,7 +72,7 @@ const Education = () => {
     {
       title: 'Matriculation',
       institution: 'Narayana E-Techno School, Vizag, Andhra Pradesh',
-      year: '2020',
+      year: '2021',
       result: '100%',
       icon: School,
     },

@@ -61,6 +61,7 @@ const Hero = () => {
             </motion.a>
             <motion.a
               href="/resume.pdf"
+              download="Sri_Vardhan_Resume"
               className="btn-outline flex items-center gap-2"
               whileHover={{ y: -5 }}
               whileTap={{ scale: 0.95 }}
@@ -103,7 +104,7 @@ const Hero = () => {
           <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-primary/30 p-2 group">
             <div className="w-full h-full rounded-full border-2 border-primary overflow-hidden shadow-[0_0_30px_rgba(0,245,212,0.3)]">
               <img 
-                src="https://ui-avatars.com/api/?name=Sri+Vardhan&size=200&background=00F5D4&color=0D0F1A" 
+                src="/profile.jpeg" 
                 alt="T. Sri Vardhan"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />

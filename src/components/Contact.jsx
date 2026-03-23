@@ -1,20 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, Linkedin, Github, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, MapPin } from 'lucide-react';
 
 const Contact = () => {
-  const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Simulate form submission
-    console.log('Form submitted:', formState);
-    setIsSubmitted(true);
-    setFormState({ name: '', email: '', message: '' });
-    setTimeout(() => setIsSubmitted(false), 5000);
-  };
-
   const contactInfo = [
     { icon: Mail, label: 'Email', value: 'srivardhan643@gmail.com', href: 'mailto:srivardhan643@gmail.com' },
     { icon: Phone, label: 'Phone', value: '+91 9492298509', href: 'tel:+919492298509' },
@@ -36,117 +24,54 @@ const Contact = () => {
             Let's <span className="text-gradient">Connect</span>
           </motion.h2>
           <div className="h-1 w-24 bg-primary mx-auto rounded-full" />
+          <p className="text-white/60 max-w-xl mx-auto text-lg">
+            Have a project in mind or just want to say hi? Feel free to reach out through any of the channels below — I'll get back to you as soon as possible!
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
-          {/* Left Side: Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <div className="space-y-4">
-              <h3 className="text-3xl font-bold font-heading">Get in Touch</h3>
-              <p className="text-white/60 max-w-md">
-                Have a project in mind or just want to say hi? My inbox is always open. Whether you have a question or just want to connect, I'll try my best to get back to you!
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {contactInfo.map((info, i) => (
-                <motion.a
-                  key={i}
-                  href={info.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ x: 10 }}
-                  className="flex items-center gap-6 p-4 glass-card rounded-2xl border border-white/10 group transition-all"
-                >
-                  <div className="p-3 bg-primary/10 rounded-xl text-primary group-hover:bg-primary group-hover:text-background transition-colors">
-                    <info.icon size={24} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-white/40 uppercase tracking-widest">{info.label}</p>
-                    <p className="text-lg font-medium text-white/80 group-hover:text-primary transition-colors">{info.value}</p>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right Side: Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="glass-card p-10 rounded-3xl border border-white/10 relative"
-          >
-            {isSubmitted && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="absolute inset-0 z-10 bg-background/80 backdrop-blur-md rounded-3xl flex flex-col items-center justify-center text-center p-8 space-y-4"
-              >
-                <div className="p-4 bg-primary/20 rounded-full text-primary">
-                  <CheckCircle size={48} />
-                </div>
-                <h4 className="text-2xl font-bold font-heading text-primary">Message Sent!</h4>
-                <p className="text-white/60 italic">"I'll get back to you soon 🚀"</p>
-                <button 
-                  onClick={() => setIsSubmitted(false)}
-                  className="text-sm font-bold text-primary hover:underline underline-offset-4"
-                >
-                  Send another message
-                </button>
-              </motion.div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-white/60 ml-1">Name</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Your Name"
-                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-primary/50 text-white placeholder:text-white/20 transition-all"
-                  value={formState.name}
-                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {contactInfo.map((info, i) => (
+            <motion.a
+              key={i}
+              href={info.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="flex flex-col items-center text-center gap-4 p-8 glass-card rounded-2xl border border-white/10 group transition-all hover:border-primary/40"
+            >
+              <div className="p-4 bg-primary/10 rounded-full text-primary group-hover:bg-primary group-hover:text-background transition-all duration-300">
+                <info.icon size={28} />
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-white/60 ml-1">Email</label>
-                <input
-                  type="email"
-                  required
-                  placeholder="your@email.com"
-                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-primary/50 text-white placeholder:text-white/20 transition-all"
-                  value={formState.email}
-                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                />
+              <div>
+                <p className="text-xs font-bold text-white/40 uppercase tracking-widest mb-1">{info.label}</p>
+                <p className="text-sm font-medium text-white/80 group-hover:text-primary transition-colors break-all">{info.value}</p>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-white/60 ml-1">Message</label>
-                <textarea
-                  required
-                  rows="5"
-                  placeholder="How can I help you?"
-                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-primary/50 text-white placeholder:text-white/20 transition-all resize-none"
-                  value={formState.message}
-                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                />
-              </div>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                className="w-full btn-primary flex items-center justify-center gap-3 py-4 text-lg"
-              >
-                Send Message <Send size={20} />
-              </motion.button>
-            </form>
-          </motion.div>
+            </motion.a>
+          ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center space-y-4"
+        >
+          <p className="text-white/40 text-sm">Preferred contact method</p>
+          <motion.a
+            href="mailto:srivardhan643@gmail.com"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn-primary inline-flex items-center gap-3 px-8 py-4 text-lg"
+          >
+            <Mail size={20} /> Send me an Email
+          </motion.a>
+        </motion.div>
+
       </div>
     </section>
   );
